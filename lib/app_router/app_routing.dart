@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:go_router_tutorial/cart_screen.dart';
 import 'package:go_router_tutorial/details_screen.dart';
 import 'package:go_router_tutorial/home_screen.dart';
 import 'package:go_router_tutorial/product_screen.dart';
@@ -8,14 +9,23 @@ class AppRouting{
     initialLocation: "/",
     debugLogDiagnostics: true,
       routes: [
+
         GoRoute(
             path: "/",
             builder: (context,state) => const HomeScreen(),
         ),
+
         GoRoute(
             path: "/product/:productName",
-            builder: (context,state)=> ProductScreen(productName: state.pathParameters['productName'] ?? '',)
+            builder: (context,state)=> ProductScreen(productName: state.pathParameters['productName'] ?? '',),
+          routes: [
+            GoRoute(
+                path: "cart",
+               builder: (context,state)=>CartScreen(productName: state.pathParameters['productName'] ?? '',)
+            )
+          ]
         ),
+
         GoRoute(
             path: "/details/:productId/:productName/:price",
             builder: (context,state){
@@ -28,7 +38,8 @@ class AppRouting{
                 price: double.parse(price),
               );
             }
-        )
+        ),
+
       ],
   );
 }
