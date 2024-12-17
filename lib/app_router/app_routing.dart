@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_router_tutorial/cart_screen.dart';
 import 'package:go_router_tutorial/details_screen.dart';
+import 'package:go_router_tutorial/error_screen.dart';
 import 'package:go_router_tutorial/home_screen.dart';
 import 'package:go_router_tutorial/product_screen.dart';
 
@@ -41,5 +43,16 @@ class AppRouting{
         ),
 
       ],
+    errorBuilder: (context,state){
+      return ErrorScreen(error: state.error);
+    },
+    errorPageBuilder: (context, state) {
+      return MaterialPage(
+        key: state.pageKey,
+        child: ErrorScreen(
+          error: state.error,
+        ),
+      );
+    },
   );
 }
