@@ -10,15 +10,15 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Details"),
+        title: const Text("Details"),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Product id $productId",style: TextStyle(fontSize: 25),),
-            Text("Product name $productName",style: TextStyle(fontSize: 25),),
-            Text("Product price $price",style: TextStyle(fontSize: 25),),
+            Text("Product id $productId",style: const TextStyle(fontSize: 25),),
+            Text("Product name $productName",style: const TextStyle(fontSize: 25),),
+            Text("Product price $price",style: const TextStyle(fontSize: 25),),
           ],
         ),
       ),
