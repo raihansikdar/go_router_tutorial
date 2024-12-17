@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
               style: TextStyle(fontSize: 20),
             ),
             ElevatedButton(onPressed: (){
-             context.push("/product");
+             context.push("/product/T-shirt");
             }, child: const Text("Go to Product"))
           ],
         ),

@@ -12,8 +12,8 @@ class AppRouting{
             builder: (context,state) => const HomeScreen(),
         ),
         GoRoute(
-            path: "/product",
-            builder: (context,state)=> const ProductScreen()
+            path: "/product/:productName",
+            builder: (context,state)=> ProductScreen(productName: state.pathParameters['productName'] ?? '',)
         )
       ],
   );

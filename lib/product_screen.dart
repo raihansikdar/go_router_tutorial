@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProductScreen extends StatelessWidget {
-  const ProductScreen({super.key});
+  final String productName;
+  const ProductScreen({super.key, required this.productName});
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +10,7 @@ class ProductScreen extends StatelessWidget {
       appBar: AppBar(title: Text("Product Screen"),
       ),
       body: Center(
-        child: Text("Product"),
+        child: Text("Product name ${productName}",style: TextStyle(fontSize: 25),),
       ),
     );
   }
