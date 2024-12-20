@@ -13,18 +13,21 @@ class AppRouting{
       routes: [
 
         GoRoute(
+          name: 'home',
             path: "/",
             builder: (context,state) => const HomeScreen(),
+          routes: [
+            GoRoute(
+                name: 'profile',
+                path: "/profile/:userId/:userName",
+                builder: (context,state) => ProfileScreen(
+                  userId: int.parse(state.pathParameters['userId'] ?? ''),
+                  userName: state.pathParameters['userName'] ?? '',
+                )
+            ),
+          ]
         ),
-        GoRoute(
-          name: 'profile',
-          path: "/profile/:name/:id",
-          builder: (context,state)=> ProfileScreen(
-            name: state.pathParameters['name'] ?? '',
-            id: int.parse(state.pathParameters['id'] ?? ''),
-          )
 
-        ),
 
         GoRoute(
             path: "/product/:productName",

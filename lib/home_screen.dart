@@ -20,9 +20,12 @@ class HomeScreen extends StatelessWidget {
             ElevatedButton(onPressed: (){
              context.push("/product/T-shirt");
             }, child: const Text("Go to Product")),
-            ElevatedButton(onPressed: (){
-              context.goNamed('profile',pathParameters: {"name": "Raihan",'id': '1001'});
-            }, child: const Text("Go to Profile"))
+
+            ElevatedButton(
+                onPressed: (){
+               context.goNamed('profile',pathParameters: {"userId": "1001", "userName":"Raihan"});
+            }, child: const Text("Go to Profile")),
+          
           ],
         ),
       ),
