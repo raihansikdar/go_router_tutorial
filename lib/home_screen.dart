@@ -18,8 +18,11 @@ class HomeScreen extends StatelessWidget {
               style: TextStyle(fontSize: 20),
             ),
             ElevatedButton(onPressed: (){
-             context.push("/product");
-            }, child: const Text("Go to Product"))
+             context.push("/product/T-shirt");
+            }, child: const Text("Go to Product")),
+            ElevatedButton(onPressed: (){
+              context.goNamed('profile',pathParameters: {"name": "Raihan",'id': '1001'});
+            }, child: const Text("Go to Profile"))
           ],
         ),
       ),

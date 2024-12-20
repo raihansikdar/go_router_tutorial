@@ -1,20 +1,29 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_router_tutorial/cart_screen.dart';
 import 'package:go_router_tutorial/details_screen.dart';
 import 'package:go_router_tutorial/error_screen.dart';
 import 'package:go_router_tutorial/home_screen.dart';
 import 'package:go_router_tutorial/product_screen.dart';
+import 'package:go_router_tutorial/profile_screen.dart';
 
 class AppRouting{
   static final GoRouter router = GoRouter(
-    initialLocation: "/",
+   initialLocation: "/",
     debugLogDiagnostics: true,
       routes: [
 
         GoRoute(
             path: "/",
             builder: (context,state) => const HomeScreen(),
+        ),
+        GoRoute(
+          name: 'profile',
+          path: "/profile/:name/:id",
+          builder: (context,state)=> ProfileScreen(
+            name: state.pathParameters['name'] ?? '',
+            id: int.parse(state.pathParameters['id'] ?? ''),
+          )
+
         ),
 
         GoRoute(
@@ -46,13 +55,13 @@ class AppRouting{
     errorBuilder: (context,state){
       return ErrorScreen(error: state.error);
     },
-    errorPageBuilder: (context, state) {
-      return MaterialPage(
-        key: state.pageKey,
-        child: ErrorScreen(
-          error: state.error,
-        ),
-      );
-    },
+    // errorPageBuilder: (context, state) {
+    //   return MaterialPage(
+    //     key: state.pageKey,
+    //     child: ErrorScreen(
+    //       error: state.error,
+    //     ),
+    //   );
+    // },
   );
 }
