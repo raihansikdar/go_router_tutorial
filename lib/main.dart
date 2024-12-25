@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router_tutorial/app_router/app_routing.dart';
-import 'package:go_router_tutorial/home_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
