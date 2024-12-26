@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_router_tutorial/cart_screen.dart';
 import 'package:go_router_tutorial/details_screen.dart';
@@ -40,19 +41,41 @@ class AppRouting{
           ]
         ),
 
+        // GoRoute(
+        //     path: "/details/:productId/:productName/:price",
+        //     builder: (context,state){
+        //       String productId = state.pathParameters['productId'] ?? '';
+        //       String productName = state.pathParameters['productName'] ?? '';
+        //       String price = state.pathParameters['price'] ?? '';
+        //       return DetailsScreen(
+        //         productId: int.parse(productId),
+        //         productName: productName,
+        //         price: double.parse(price),
+        //       );
+        //     }
+        // ),
+
         GoRoute(
-            path: "/details/:productId/:productName/:price",
-            builder: (context,state){
-              String productId = state.pathParameters['productId'] ?? '';
-              String productName = state.pathParameters['productName'] ?? '';
-              String price = state.pathParameters['price'] ?? '';
-              return DetailsScreen(
-                productId: int.parse(productId),
-                productName: productName,
-                price: double.parse(price),
-              );
-            }
-        ),
+          path: "/details/:productId/:productName/:price",
+          pageBuilder: (context,state){
+            String productId = state.pathParameters['productId'] ?? '';
+            String productName = state.pathParameters['productName'] ?? '';
+            String price = state.pathParameters['price'] ?? '';
+            return CustomTransitionPage(
+              key: state.pageKey,
+                child: DetailsScreen(
+                  productId: int.parse(productId),
+                  productName: productName,
+                  price: double.parse(price),
+                ),
+                transitionsBuilder: (context,animation,secondaryAnimation,child){
+                return FadeTransition(opacity: animation,child: child,);
+                },
+              transitionDuration: Duration(seconds:0)
+            );
+
+          }
+        )
 
       ],
     errorBuilder: (context,state){
