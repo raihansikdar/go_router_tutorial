@@ -9,7 +9,9 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.amberAccent,
       appBar: AppBar(
+        backgroundColor: Colors.redAccent,
         title: const Text("Details"),
       ),
       body: Center(

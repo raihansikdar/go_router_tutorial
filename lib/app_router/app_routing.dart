@@ -55,27 +55,58 @@ class AppRouting{
         //     }
         // ),
 
-        GoRoute(
-          path: "/details/:productId/:productName/:price",
-          pageBuilder: (context,state){
-            String productId = state.pathParameters['productId'] ?? '';
-            String productName = state.pathParameters['productName'] ?? '';
-            String price = state.pathParameters['price'] ?? '';
-            return CustomTransitionPage(
-              key: state.pageKey,
-                child: DetailsScreen(
-                  productId: int.parse(productId),
-                  productName: productName,
-                  price: double.parse(price),
-                ),
-                transitionsBuilder: (context,animation,secondaryAnimation,child){
-                return FadeTransition(opacity: animation,child: child,);
-                },
-              transitionDuration: Duration(seconds:0)
-            );
+        // GoRoute(
+        //   path: "/details/:productId/:productName/:price",
+        //   pageBuilder: (context,state){
+        //     String productId = state.pathParameters['productId'] ?? '';
+        //     String productName = state.pathParameters['productName'] ?? '';
+        //     String price = state.pathParameters['price'] ?? '';
+        //     return CustomTransitionPage(
+        //       key: state.pageKey,
+        //         child: DetailsScreen(
+        //           productId: int.parse(productId),
+        //           productName: productName,
+        //           price: double.parse(price),
+        //         ),
+        //         transitionsBuilder: (context,animation,secondaryAnimation,child){
+        //         return FadeTransition(opacity: animation,child: child,);
+        //         },
+        //       transitionDuration: Duration(seconds:0)
+        //     );
+        //
+        //   }
+        // )
 
-          }
+        GoRoute(
+            path: "/details/:productId/:productName/:price",
+            pageBuilder: (context,state){
+              String productId = state.pathParameters['productId'] ?? '';
+              String productName = state.pathParameters['productName'] ?? '';
+              String price = state.pathParameters['price'] ?? '';
+              return CustomTransitionPage(
+                  key: state.pageKey,
+                  child: DetailsScreen(
+                    productId: int.parse(productId),
+                    productName: productName,
+                    price: double.parse(price),
+                  ),
+                  transitionsBuilder: (context,animation,secondaryAnimation,child){
+                    const begin = Offset(1, 0);
+                    const end = Offset.zero;
+                    const curve = Curves.linear;
+
+                    var tween = Tween(begin: begin,end: end).chain(CurveTween(curve: curve));
+                    var offsetAnimation = animation.drive(tween);
+
+                    return SlideTransition(position: offsetAnimation,child: child,);
+                  },
+                  transitionDuration: Duration(seconds:2)
+              );
+
+            }
         )
+
+
 
       ],
     errorBuilder: (context,state){
